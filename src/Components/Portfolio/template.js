@@ -1,13 +1,15 @@
-import Button from "@mui/material/Button";
+import { CustomTag, TagText } from "@asphalt-react/tag";
 import { useRouter } from "next/router";
 import * as React from "react";
 import {
+  Button,
   Typography,
   Card,
   CardContent,
   CardMedia,
   CardActionArea,
   CardActions,
+  Box,
 } from "@mui/material";
 import ReadDialog from "./dialog";
 
@@ -55,10 +57,29 @@ const Template = ({ work }) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions
+          sx={{
+            color: "white",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box sx={{ display: "flex", gap: "10px" }}>
+            {work.keywords &&
+              work.keywords.map((item, idx) => (
+                <CustomTag
+                  key={idx}
+                  surface="#222233"
+                  content="white"
+                  intent="white"
+                  size="s"
+                >
+                  <TagText>{item}</TagText>
+                </CustomTag>
+              ))}
+          </Box>
           <Button
             sx={{
-              margin: "auto",
               color: "white",
               borderColor: "white",
               borderRadius: 2,
